@@ -14,6 +14,7 @@
 """Simply utility functions to improve QOL of QM developers and QM users."""
 
 import logging
+import numpy as np
 import os
 import re
 import sys
@@ -24,6 +25,7 @@ from typing import Dict, List, TYPE_CHECKING, Tuple, Callable, Union
 import inspect
 
 import pandas as pd
+import numpy as np 
 
 from qiskit_metal.draw import Vector
 from qiskit_metal.toolbox_metal.exceptions import InputError
@@ -635,3 +637,38 @@ def get_clean_name(name: str) -> str:
     # Remove leading characters until we find a letter or underscore
     name = re.sub("^[^a-zA-Z_]+", "", name)
     return name
+
+def rotate_point(point, angle):
+    """
+    Rotates 2D point about (0, 0).
+    
+    Options:
+        *point: The (x, y) coordinates
+        *angle: The rotation angle in radians
+    
+    Returns:
+        np.array: rotated point
+        
+    """
+    
+    rot_matrix = np.array([[np.cos(angle), -np.sin(angle)],
+                           [np.sin(angle),  np.cos(angle)]])
+    return np.dot(rot_matrix, point)
+
+def rotate_point(point, angle):
+    """
+    Rotates 2D point about (0, 0).
+    
+    Options:
+        *point: The (x, y) coordinates
+        *angle: The rotation angle in radians
+    
+    Returns:
+        np.array: rotated point
+        
+    """
+    
+    rot_matrix = np.array([[np.cos(angle), -np.sin(angle)],
+                           [np.sin(angle),  np.cos(angle)]])
+    return np.dot(rot_matrix, point)
+
